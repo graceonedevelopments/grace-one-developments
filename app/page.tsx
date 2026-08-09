@@ -56,19 +56,23 @@ export default function Home() {
               : "border-transparent bg-transparent"
           }`}
         >
-          <a href="#home" className="flex items-center" onClick={closeMenu}>
+          <a
+            href="#home"
+            className="flex shrink-0 items-center"
+            onClick={closeMenu}
+          >
             <Image
               src="/grace-one-logo.png"
               alt="Grace One Developments"
-              width={190}
+              width={200}
               height={100}
               priority
-              className="h-auto w-[125px] object-contain md:w-[150px]"
+              className="h-auto w-[135px] object-contain md:w-[155px]"
             />
           </a>
 
           {/* DESKTOP MENU */}
-          <nav className="hidden items-center gap-6 text-[11px] uppercase tracking-[0.16em] text-neutral-200 lg:flex">
+          <nav className="hidden items-center gap-4 text-[10px] uppercase tracking-[0.15em] text-neutral-200 lg:flex xl:gap-5 xl:text-[11px]">
             <a href="#about" className="transition hover:text-white">
               About
             </a>
@@ -91,7 +95,7 @@ export default function Home() {
 
             <a
               href="#contact"
-              className="border border-white/40 px-5 py-3 text-white transition duration-300 hover:bg-white hover:text-black"
+              className="border border-white/40 px-4 py-2.5 text-white transition duration-300 hover:bg-white hover:text-black"
             >
               Contact
             </a>
@@ -163,7 +167,7 @@ export default function Home() {
         <div className="absolute inset-0 bg-black/55" />
         <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/45 to-black/10" />
 
-        <div className="relative z-20 mx-auto w-full max-w-7xl px-6 pb-20 pt-36 md:px-10">
+        <div className="relative z-20 mx-auto w-full max-w-7xl px-6 pb-20 pt-52 md:px-10 md:pt-48">
           <div className="max-w-4xl">
             <p className="mb-6 text-xs uppercase tracking-[0.4em] text-neutral-300">
               Real Estate • Development • Investment
@@ -241,8 +245,8 @@ export default function Home() {
 
             <p className="mt-6 text-lg leading-8 text-neutral-600">
               Our approach combines property acquisition, renovation, rental
-              housing, redevelopment, and strategic investment with a
-              long-term vision for responsible growth.
+              housing, redevelopment, and strategic investment with a long-term
+              vision for responsible growth.
             </p>
 
             <div className="mt-12 grid gap-8 sm:grid-cols-2">
@@ -750,6 +754,7 @@ export default function Home() {
                     placeholder="Your name"
                     className={darkField}
                   />
+
                   <input
                     type="tel"
                     placeholder="Phone number"
