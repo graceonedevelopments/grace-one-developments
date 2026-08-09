@@ -3,14 +3,20 @@ import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
+function isValidEmail(email: string) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
 export async function POST(request: Request) {
   try {
     const data = await request.json();
 
-    const { error } = await resend.emails.send({
+    const applicantEmail =
+      typeof data.email === "string" ? data.email.trim() : "";
+
+    const emailData: any = {
       from: `Grace One Developments <${process.env.FROM_EMAIL}>`,
       to: [process.env.CONTACT_TO_EMAIL!],
-      replyTo: data.email,
 
       subject: `New Housing Interest - ${data.firstName} ${data.lastName}`,
 
@@ -19,7 +25,7 @@ export async function POST(request: Request) {
           <h2>New Housing Interest Application</h2>
 
           <p><strong>Name:</strong> ${data.firstName} ${data.lastName}</p>
-          <p><strong>Email:</strong> ${data.email}</p>
+          <p><strong>Email:</strong> ${applicantEmail || "Not provided"}</p>
           <p><strong>Phone:</strong> ${data.phone}</p>
           <p><strong>Household Size:</strong> ${data.householdSize}</p>
           <p><strong>Voucher Status:</strong> ${data.voucherStatus}</p>
@@ -38,7 +44,7 @@ export async function POST(request: Request) {
 NEW HOUSING INTEREST APPLICATION
 
 Name: ${data.firstName} ${data.lastName}
-Email: ${data.email}
+Email: ${applicantEmail || "Not provided"}
 Phone: ${data.phone}
 Household Size: ${data.householdSize}
 Voucher Status: ${data.voucherStatus}
@@ -49,7 +55,14 @@ Housing Authority / County: ${data.housingAuthority || "Not provided"}
 Additional Information:
 ${data.message || "None"}
       `,
-    });
+    };
+
+    // Only add replyTo if the email is valid
+    if (isValidEmail(applicantEmail)) {
+      emailData.replyTo = applicantEmail;
+    }
+
+    const { error } = await resend.emails.send(emailData);
 
     if (error) {
       console.error("Resend error:", error);
@@ -61,6 +74,7 @@ ${data.message || "None"}
     }
 
     return NextResponse.json({ success: true });
+
   } catch (error) {
     console.error("Housing route error:", error);
 
