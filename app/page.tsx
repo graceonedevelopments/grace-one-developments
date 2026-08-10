@@ -4,10 +4,10 @@ import Image from "next/image";
 import { FormEvent, useEffect, useState } from "react";
 
 const lightField =
-  "w-full border border-neutral-300 bg-neutral-50 px-4 py-4 text-neutral-950 outline-none transition placeholder:text-neutral-400 focus:border-neutral-950";
+  "w-full border border-neutral-300 bg-neutral-50 px-4 py-4 text-neutral-950 outline-none transition duration-300 placeholder:text-neutral-400 focus:border-neutral-950 focus:bg-white";
 
 const darkField =
-  "w-full border border-neutral-700 bg-neutral-950 px-4 py-4 text-white outline-none transition placeholder:text-neutral-500 focus:border-neutral-400";
+  "w-full border border-neutral-700 bg-neutral-950 px-4 py-4 text-white outline-none transition duration-300 placeholder:text-neutral-500 focus:border-neutral-400";
 
 type FormStatus = "idle" | "sending" | "success" | "error";
 
@@ -53,14 +53,28 @@ export default function Home() {
         body: JSON.stringify(data),
       });
 
+      const result = await response.json().catch(() => null);
+
       if (!response.ok) {
-        throw new Error("Submission failed");
+        console.error("Form submission error:", result);
+        throw new Error(
+          result?.error || "We could not submit your information."
+        );
       }
 
       form.reset();
       setStatus("success");
-    } catch {
+
+      window.setTimeout(() => {
+        setStatus("idle");
+      }, 8000);
+    } catch (error) {
+      console.error("Form submission failed:", error);
       setStatus("error");
+
+      window.setTimeout(() => {
+        setStatus("idle");
+      }, 8000);
     }
   }
 
@@ -425,11 +439,7 @@ export default function Home() {
 
           <form
             onSubmit={(event) =>
-              submitForm(
-                event,
-                "/api/housing",
-                setHousingStatus
-              )
+              submitForm(event, "/api/housing", setHousingStatus)
             }
             className="mt-14 space-y-7"
           >
@@ -506,9 +516,7 @@ export default function Home() {
                 defaultValue=""
                 className={lightField}
               >
-                <option value="">
-                  Voucher Bedroom Size
-                </option>
+                <option value="">Voucher Bedroom Size</option>
                 <option>Studio</option>
                 <option>1 Bedroom</option>
                 <option>2 Bedrooms</option>
@@ -539,7 +547,7 @@ export default function Home() {
             <button
               type="submit"
               disabled={housingStatus === "sending"}
-              className="bg-neutral-950 px-9 py-4 text-sm uppercase tracking-[0.18em]"
+              className="bg-neutral-950 px-9 py-4 text-sm uppercase tracking-[0.18em] disabled:cursor-not-allowed disabled:opacity-60"
               style={{ color: "#ffffff" }}
             >
               {housingStatus === "sending"
@@ -548,16 +556,38 @@ export default function Home() {
             </button>
 
             {housingStatus === "success" && (
-              <p className="text-green-700">
-                Thank you. Your housing information was submitted
-                successfully.
-              </p>
+              <div
+                className="mt-6 border border-green-700 bg-green-50 p-5"
+                role="status"
+                aria-live="polite"
+              >
+                <p className="font-semibold text-green-800">
+                  Thank you! Your housing interest has been received.
+                </p>
+
+                <p className="mt-2 text-sm text-green-700">
+                  Grace One Developments has received your information.
+                  Our team will review your submission and contact you
+                  if additional information is needed.
+                </p>
+              </div>
             )}
 
             {housingStatus === "error" && (
-              <p className="text-red-700">
-                We could not submit the form. Please try again.
-              </p>
+              <div
+                className="mt-6 border border-red-700 bg-red-50 p-5"
+                role="alert"
+              >
+                <p className="font-semibold text-red-800">
+                  We couldn&apos;t submit your application.
+                </p>
+
+                <p className="mt-2 text-sm text-red-700">
+                  Please check your information and try again. If the
+                  problem continues, contact Grace One Developments
+                  directly.
+                </p>
+              </div>
             )}
           </form>
 
@@ -627,7 +657,6 @@ export default function Home() {
             renovation, redevelopment, and partnership opportunities.
           </p>
 
-          {/* PROPERTY FORM */}
           <div className="mt-16 rounded-3xl border border-neutral-800 bg-neutral-950 p-8 md:p-12">
             <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr]">
               <div>
@@ -717,9 +746,7 @@ export default function Home() {
                   defaultValue=""
                   className={darkField}
                 >
-                  <option value="">
-                    Property Condition
-                  </option>
+                  <option value="">Property Condition</option>
                   <option>Move-in ready</option>
                   <option>Needs light repairs</option>
                   <option>Needs major renovation</option>
@@ -737,7 +764,7 @@ export default function Home() {
                 <button
                   type="submit"
                   disabled={propertyStatus === "sending"}
-                  className="bg-white px-9 py-4 text-sm uppercase tracking-[0.18em]"
+                  className="bg-white px-9 py-4 text-sm uppercase tracking-[0.18em] disabled:cursor-not-allowed disabled:opacity-60"
                   style={{ color: "#0a0a0a" }}
                 >
                   {propertyStatus === "sending"
@@ -746,15 +773,35 @@ export default function Home() {
                 </button>
 
                 {propertyStatus === "success" && (
-                  <p className="text-green-400">
-                    Property information submitted successfully.
-                  </p>
+                  <div
+                    className="mt-6 border border-green-500 bg-green-950/30 p-5"
+                    role="status"
+                    aria-live="polite"
+                  >
+                    <p className="font-semibold text-green-300">
+                      Thank you! Your property has been submitted.
+                    </p>
+
+                    <p className="mt-2 text-sm text-green-200">
+                      Grace One Developments has received the property
+                      information and will review the opportunity.
+                    </p>
+                  </div>
                 )}
 
                 {propertyStatus === "error" && (
-                  <p className="text-red-400">
-                    We could not submit the property. Please try again.
-                  </p>
+                  <div
+                    className="mt-6 border border-red-500 bg-red-950/30 p-5"
+                    role="alert"
+                  >
+                    <p className="font-semibold text-red-300">
+                      We couldn&apos;t submit the property.
+                    </p>
+
+                    <p className="mt-2 text-sm text-red-200">
+                      Please check the information and try again.
+                    </p>
+                  </div>
                 )}
               </form>
             </div>
@@ -767,10 +814,7 @@ export default function Home() {
         id="contact"
         className="bg-neutral-100 px-6 py-28 text-neutral-950 md:px-10"
       >
-        <div
-          id="contact-form"
-          className="mx-auto max-w-5xl"
-        >
+        <div className="mx-auto max-w-5xl">
           <div className="text-center">
             <p className="text-xs uppercase tracking-[0.3em] text-neutral-500">
               Contact Grace One
@@ -790,11 +834,7 @@ export default function Home() {
 
           <form
             onSubmit={(event) =>
-              submitForm(
-                event,
-                "/api/contact",
-                setContactStatus
-              )
+              submitForm(event, "/api/contact", setContactStatus)
             }
             className="mx-auto mt-14 max-w-3xl space-y-6"
           >
@@ -848,7 +888,7 @@ export default function Home() {
             <button
               type="submit"
               disabled={contactStatus === "sending"}
-              className="w-full bg-neutral-950 px-9 py-4 text-sm uppercase tracking-[0.18em]"
+              className="w-full bg-neutral-950 px-9 py-4 text-sm uppercase tracking-[0.18em] disabled:cursor-not-allowed disabled:opacity-60"
               style={{ color: "#ffffff" }}
             >
               {contactStatus === "sending"
@@ -857,15 +897,35 @@ export default function Home() {
             </button>
 
             {contactStatus === "success" && (
-              <p className="text-center text-green-700">
-                Thank you. Your message has been sent.
-              </p>
+              <div
+                className="mt-6 border border-green-700 bg-green-50 p-5"
+                role="status"
+                aria-live="polite"
+              >
+                <p className="font-semibold text-green-800">
+                  Thank you! Your message has been received.
+                </p>
+
+                <p className="mt-2 text-sm text-green-700">
+                  Grace One Developments has received your message. Our
+                  team will respond as soon as possible.
+                </p>
+              </div>
             )}
 
             {contactStatus === "error" && (
-              <p className="text-center text-red-700">
-                Your message could not be sent. Please try again.
-              </p>
+              <div
+                className="mt-6 border border-red-700 bg-red-50 p-5"
+                role="alert"
+              >
+                <p className="font-semibold text-red-800">
+                  We couldn&apos;t send your message.
+                </p>
+
+                <p className="mt-2 text-sm text-red-700">
+                  Please check your information and try again.
+                </p>
+              </div>
             )}
           </form>
         </div>
@@ -878,6 +938,7 @@ export default function Home() {
             <p className="text-neutral-300">
               Grace One Developments
             </p>
+
             <p>Real Estate • Development • Investment</p>
           </div>
 
