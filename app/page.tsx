@@ -175,7 +175,7 @@ export default function Home() {
       >
         <Image
           src="/images/hero-home.jpg"
-          alt="Residential development"
+          alt="Tampa residential real estate development"
           fill
           priority
           className="object-cover"
@@ -187,7 +187,7 @@ export default function Home() {
         <div className="relative z-20 mx-auto w-full max-w-7xl px-6 pb-20 pt-44 md:px-10">
           <div className="max-w-4xl">
             <p className="mb-6 text-xs uppercase tracking-[0.4em] text-neutral-300">
-              Real Estate • Development • Investment
+              Tampa Real Estate • Development • Investment
             </p>
 
             <h1 className="text-5xl font-light leading-[1.02] tracking-[-0.035em] md:text-6xl lg:text-7xl xl:text-8xl">
@@ -197,9 +197,9 @@ export default function Home() {
             </h1>
 
             <p className="mt-8 max-w-2xl text-lg leading-8 text-neutral-200">
-              Grace One Developments creates quality residential
-              properties through thoughtful development, renovation,
-              rental housing, and long-term investment.
+              Grace One Developments serves Tampa, Florida with residential
+              development, renovation, rental housing, Section 8 opportunities,
+              property acquisition, and long-term real estate investment.
             </p>
 
             <div className="mt-10 flex flex-col gap-4 sm:flex-row">
@@ -232,7 +232,7 @@ export default function Home() {
           <div className="relative min-h-[560px] overflow-hidden rounded-3xl">
             <Image
               src="/images/about-home.jpg"
-              alt="Residential development"
+              alt="Tampa residential development"
               fill
               className="object-cover"
             />
@@ -250,16 +250,16 @@ export default function Home() {
             </h2>
 
             <p className="mt-8 text-lg leading-8 text-neutral-600">
-              Grace One Developments is a residential real estate
+              Grace One Developments is a Tampa-based residential real estate
               development and investment company focused on identifying
-              opportunities, improving properties, and creating quality
-              places to live.
+              opportunities, improving properties, and creating quality places
+              to live.
             </p>
 
             <p className="mt-6 text-lg leading-8 text-neutral-600">
-              Our approach combines acquisition, renovation, rental
-              housing, redevelopment, and strategic investment with a
-              long-term vision for responsible growth.
+              Our approach combines acquisition, renovation, rental housing,
+              redevelopment, and strategic investment with a long-term vision
+              for responsible growth in Tampa and future markets.
             </p>
           </div>
         </div>
@@ -281,22 +281,22 @@ export default function Home() {
               [
                 "01",
                 "Residential Development",
-                "Residential properties designed and improved for modern living and long-term value.",
+                "Residential properties in Tampa designed and improved for modern living and long-term value.",
               ],
               [
                 "02",
                 "Rental Housing",
-                "Quality rental properties supported by responsible ownership and thoughtful management.",
+                "Quality Tampa rental properties supported by responsible ownership and thoughtful management.",
               ],
               [
                 "03",
                 "Remodeling",
-                "Renovation and property improvement for homeowners and investment properties.",
+                "Renovation and property improvement for Tampa homeowners and investment properties.",
               ],
               [
                 "04",
                 "Investment Opportunities",
-                "Residential acquisitions, redevelopment opportunities, and strategic partnerships.",
+                "Tampa residential acquisitions, redevelopment opportunities, and strategic partnerships.",
               ],
             ].map(([number, title, text]) => (
               <div
@@ -325,7 +325,7 @@ export default function Home() {
       >
         <div className="mx-auto max-w-7xl">
           <p className="text-xs uppercase tracking-[0.3em] text-neutral-500">
-            Portfolio
+            Tampa Portfolio
           </p>
 
           <h2 className="mt-4 text-5xl font-light md:text-6xl">
@@ -356,7 +356,7 @@ export default function Home() {
               >
                 <Image
                   src={project.src}
-                  alt={project.title}
+                  alt={`${project.title} in Tampa, Florida`}
                   fill
                   className="object-cover transition duration-700 group-hover:scale-105"
                 />
@@ -386,7 +386,7 @@ export default function Home() {
         <div className="mx-auto grid max-w-7xl gap-14 lg:grid-cols-2 lg:items-center">
           <div>
             <p className="text-xs uppercase tracking-[0.3em] text-neutral-500">
-              Housing Opportunities
+              Tampa Housing Opportunities
             </p>
 
             <h2 className="mt-5 text-5xl font-light md:text-7xl">
@@ -394,12 +394,12 @@ export default function Home() {
             </h2>
 
             <p className="mt-8 text-lg leading-8 text-neutral-600">
-              Grace One Developments plans to offer quality rental homes
-              that may participate in the Housing Choice Voucher Program.
+              Grace One Developments plans to offer quality rental homes in
+              Tampa that may participate in the Housing Choice Voucher Program.
             </p>
 
             <p className="mt-6 text-lg leading-8 text-neutral-600">
-              Prospective residents can submit their information to
+              Prospective Tampa-area residents can submit their information to
               express interest in future Grace One rental properties.
             </p>
 
@@ -415,7 +415,7 @@ export default function Home() {
           <div className="relative min-h-[520px] overflow-hidden rounded-3xl">
             <Image
               src="/images/section8.jpg"
-              alt="Residential neighborhood"
+              alt="Tampa residential neighborhood"
               fill
               className="object-cover"
             />
@@ -430,7 +430,7 @@ export default function Home() {
       >
         <div className="mx-auto max-w-6xl">
           <p className="text-xs uppercase tracking-[0.3em] text-neutral-500">
-            Prospective Residents
+            Tampa Prospective Residents
           </p>
 
           <h2 className="mt-5 text-4xl font-light md:text-6xl">
@@ -540,7 +540,7 @@ export default function Home() {
             <textarea
               name="message"
               rows={5}
-              placeholder="Tell us what type of housing you are looking for..."
+              placeholder="Tell us what type of housing you are looking for in the Tampa area..."
               className={`${lightField} resize-none`}
             />
 
@@ -567,8 +567,8 @@ export default function Home() {
 
                 <p className="mt-2 text-sm text-green-700">
                   Grace One Developments has received your information.
-                  Our team will review your submission and contact you
-                  if additional information is needed.
+                  Our team will review your submission and contact you if
+                  additional information is needed.
                 </p>
               </div>
             )}
@@ -607,7 +607,7 @@ export default function Home() {
           <div className="relative min-h-[520px] overflow-hidden rounded-3xl">
             <Image
               src="/images/remodeling.jpg"
-              alt="Residential remodeling"
+              alt="Tampa residential remodeling"
               fill
               className="object-cover"
             />
@@ -615,7 +615,7 @@ export default function Home() {
 
           <div>
             <p className="text-xs uppercase tracking-[0.3em] text-neutral-500">
-              Remodeling
+              Tampa Remodeling
             </p>
 
             <h2 className="mt-5 text-5xl font-light md:text-6xl">
@@ -623,9 +623,9 @@ export default function Home() {
             </h2>
 
             <p className="mt-8 text-lg leading-8 text-neutral-400">
-              Grace One Developments provides renovation and property
-              improvement services for homeowners and investment
-              properties.
+              Grace One Developments provides residential renovation and
+              property improvement services for homeowners and investment
+              properties throughout the Tampa area.
             </p>
 
             <a
@@ -645,7 +645,7 @@ export default function Home() {
       >
         <div className="mx-auto max-w-7xl">
           <p className="text-xs uppercase tracking-[0.3em] text-neutral-500">
-            Real Estate Opportunities
+            Tampa Real Estate Opportunities
           </p>
 
           <h2 className="mt-5 text-5xl font-light md:text-7xl">
@@ -653,8 +653,9 @@ export default function Home() {
           </h2>
 
           <p className="mt-8 max-w-3xl text-lg leading-8 text-neutral-400">
-            Grace One evaluates residential properties for acquisition,
-            renovation, redevelopment, and partnership opportunities.
+            Grace One evaluates Tampa-area residential properties for
+            acquisition, renovation, redevelopment, and partnership
+            opportunities.
           </p>
 
           <div className="mt-16 rounded-3xl border border-neutral-800 bg-neutral-950 p-8 md:p-12">
@@ -670,7 +671,7 @@ export default function Home() {
 
                 <p className="mt-6 text-lg leading-8 text-neutral-400">
                   Property owners, agents, and wholesalers can send Grace
-                  One potential acquisition and redevelopment
+                  One potential Tampa acquisition and redevelopment
                   opportunities.
                 </p>
               </div>
@@ -817,7 +818,7 @@ export default function Home() {
         <div className="mx-auto max-w-5xl">
           <div className="text-center">
             <p className="text-xs uppercase tracking-[0.3em] text-neutral-500">
-              Contact Grace One
+              Contact Grace One Tampa
             </p>
 
             <h2 className="mt-6 text-5xl font-light md:text-7xl">
@@ -827,8 +828,9 @@ export default function Home() {
             </h2>
 
             <p className="mx-auto mt-8 max-w-3xl text-lg leading-8 text-neutral-600">
-              Contact Grace One Developments about housing, remodeling,
-              acquisitions, development opportunities, or partnerships.
+              Contact Grace One Developments in Tampa about housing,
+              remodeling, acquisitions, development opportunities, or
+              partnerships.
             </p>
           </div>
 
@@ -939,7 +941,7 @@ export default function Home() {
               Grace One Developments
             </p>
 
-            <p>Real Estate • Development • Investment</p>
+            <p>Tampa, Florida • Real Estate • Development • Investment</p>
           </div>
 
           <p>
